@@ -2,6 +2,11 @@
 
 namespace AutoMapperProfileWithDI
 {
+    public interface IAutoMapperBuilder
+    {
+        IMapper Build();
+    }
+
     public class AutoMapperBuilder : IAutoMapperBuilder
     {
         private readonly IMyService myService;

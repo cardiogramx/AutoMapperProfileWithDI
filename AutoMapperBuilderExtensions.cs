@@ -8,7 +8,7 @@ namespace AutoMapperProfileWithDI
         public static IServiceCollection AddAutoMapperBuilder(this IServiceCollection services, Action<AutoMapperBuilderConfiguration> option)
         {
             //Configure IOptions<AutoMapperBuilderConfiguration>
-            services.Configure<AutoMapperBuilderConfiguration>(option);
+            services.Configure(option);
 
             //Registering IAutoMapperBuilder in the DI container
             services.AddTransient<IAutoMapperBuilder, AutoMapperBuilder>();

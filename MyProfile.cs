@@ -2,14 +2,16 @@
 
 namespace AutoMapperProfileWithDI
 {
-    public class MyProfile : Profile
+    public class MyClass : Profile
     {
-        public MyProfile(IMyService myService)
+        public MyClass(IMyService myService)
         {
-            myService.DoSomething();
+            if (myService != null)
+            {
+                CreateMap<MyClass1, MyClass2>()
+                    .ForMember(dest => dest.Message, option => option.MapFrom(src => myService.DoSomething()));
+            }
 
-            CreateMap<MyClass1, MyClass2>()
-                .ForMember(dest => dest.Message, option => option.MapFrom(src => myService.DoSomething()));
         }
     }
 }

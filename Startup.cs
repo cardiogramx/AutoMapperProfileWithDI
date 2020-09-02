@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,8 +20,12 @@ namespace AutoMapperProfileWithDI
             //Registering MyService in the DI container
             services.AddTransient<IMyService, MyService>();
 
-            //Registering IAutoMapperBuilder in the DI container
-            services.AddTransient<IAutoMapperBuilder, AutoMapperBuilder>();
+            var provider = services.BuildServiceProvider();
+
+            services.AddAutoMapperBuilder(option =>
+            {
+                option.Profiles.Add(new MyClass(provider.GetRequiredService<IMyService>()));
+            });
 
             services.AddControllers();
         }

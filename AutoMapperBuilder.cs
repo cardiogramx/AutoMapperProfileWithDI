@@ -1,7 +1,15 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using Microsoft.Extensions.Options;
+
+using AutoMapper;
 
 namespace AutoMapperProfileWithDI
 {
+    public class AutoMapperBuilderConfiguration
+    {
+        public List<Profile> Profiles { get; set; } = new List<Profile>();
+    }
+
     public interface IAutoMapperBuilder
     {
         IMapper Build();
@@ -9,16 +17,16 @@ namespace AutoMapperProfileWithDI
 
     public class AutoMapperBuilder : IAutoMapperBuilder
     {
-        private readonly IMyService myService;
+        private List<Profile> Profiles { get; }
 
-        public AutoMapperBuilder(IMyService myService)
+        public AutoMapperBuilder(IOptions<AutoMapperBuilderConfiguration> options)
         {
-            this.myService = myService;
+            Profiles = options.Value.Profiles;
         }
 
         public IMapper Build()
         {
-            return new MapperConfiguration(c => c.AddProfile(new MyProfile(myService))).CreateMapper();
+            return new MapperConfiguration(c => c.AddProfiles(Profiles)).CreateMapper();
         }
     }
 }

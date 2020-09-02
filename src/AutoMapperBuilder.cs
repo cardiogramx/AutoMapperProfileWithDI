@@ -7,12 +7,24 @@ namespace AutoMapperBuilder
 {
     public interface IAutoMapperBuilder
     {
+        /// <summary>
+        /// Represents a list <see cref="Profile"/> that gets added to the <see cref="MapperConfiguration"/> during <seealso cref="Build()"/>.
+        /// </summary>
+        public List<Profile> Profiles { get; }
+
+        /// <summary>
+        /// Builds AutoMapper with the <see cref="AutoMapperBuilderConfiguration"/> supplied and returns <seealso cref="IMapper"/>.
+        /// </summary>
+        /// <returns>returns <seealso cref="IMapper"/>.</returns>
         IMapper Build();
     }
 
+    /// <summary>
+    /// The default implementation of <see cref="IAutoMapperBuilder"/>.
+    /// </summary>
     public class AutoMapperBuilder : IAutoMapperBuilder
     {
-        private List<Profile> Profiles { get; }
+        public List<Profile> Profiles { get; }
 
         public AutoMapperBuilder(IOptions<AutoMapperBuilderConfiguration> options)
         {

@@ -11,7 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AutoMapperBuilder">
-      <HintPath>..\AutoMapperBuilder\bin\Debug\netcoreapp3.1\AutoMapperBuilder.dll</HintPath>
+      <HintPath>..\..\src\bin\Debug\netcoreapp3.1\AutoMapperBuilder.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

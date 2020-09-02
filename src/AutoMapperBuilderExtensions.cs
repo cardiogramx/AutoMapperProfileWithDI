@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AutoMapperProfileWithDI
+namespace AutoMapperBuilder.Extensions.DependencyInjection
 {
     public static class AutoMapperBuilderExtensions
     {

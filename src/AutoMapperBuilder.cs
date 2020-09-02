@@ -3,13 +3,8 @@ using Microsoft.Extensions.Options;
 
 using AutoMapper;
 
-namespace AutoMapperProfileWithDI
+namespace AutoMapperBuilder
 {
-    public class AutoMapperBuilderConfiguration
-    {
-        public List<Profile> Profiles { get; set; } = new List<Profile>();
-    }
-
     public interface IAutoMapperBuilder
     {
         IMapper Build();

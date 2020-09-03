@@ -13,9 +13,9 @@ namespace AutoMapperBuilder
         public List<Profile> Profiles { get; }
 
         /// <summary>
-        /// Builds AutoMapper with the <see cref="AutoMapperBuilderConfiguration"/> supplied and returns <seealso cref="IMapper"/>.
+        /// Builds AutoMapper with the configured <see cref="AutoMapperBuilderConfiguration"/>.
         /// </summary>
-        /// <returns>returns <seealso cref="IMapper"/>.</returns>
+        /// <returns><seealso cref="IMapper"/>.</returns>
         IMapper Build();
     }
 

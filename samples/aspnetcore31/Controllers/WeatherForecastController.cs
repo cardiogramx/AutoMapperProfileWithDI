@@ -8,11 +8,12 @@ namespace AutoMapperProfileWithDI.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly IMapper mapper;
+        private readonly IMapper _mapper;
 
-        public WeatherForecastController(IAutoMapperBuilder autoMapperBuilder)
+        public WeatherForecastController(IAutoMapperBuilder autoMapperBuilder, IMapper mapper)
         {
-            mapper = autoMapperBuilder.Build();
+            //_mapper = autoMapperBuilder.Build();
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -20,7 +21,7 @@ namespace AutoMapperProfileWithDI.Controllers
         {
             MyClass1 class1 = new MyClass1();
 
-            var class2 = mapper.Map<MyClass2>(class1);
+            var class2 = _mapper.Map<MyClass2>(class1);
 
             return class2.Message;
         }

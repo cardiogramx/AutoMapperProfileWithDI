@@ -1,9 +1,9 @@
-using AutoMapperBuilder.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+using AutoMapperBuilder.Extensions.DependencyInjection;
 
 namespace AutoMapperProfileWithDI
 {
@@ -23,9 +23,9 @@ namespace AutoMapperProfileWithDI
 
             var provider = services.BuildServiceProvider();
 
-            services.AddAutoMapperBuilder(option =>
+            services.AddAutoMapperBuilder(builder =>
             {
-                option.Profiles.Add(new MyClass(provider.GetRequiredService<IMyService>()));
+                builder.Profiles.Add(new MyClass(provider.GetRequiredService<IMyService>()));
             });
 
             services.AddControllers();

@@ -8,13 +8,16 @@ namespace AutoMapperBuilder.Extensions.DependencyInjection
         /// <summary>
         /// Adds AutoMapperBuilder to the specified <see cref="IServiceCollection"/>.
         /// </summary>
-        public static IServiceCollection AddAutoMapperBuilder(this IServiceCollection services, Action<AutoMapperBuilderConfiguration> option)
+        public static IServiceCollection AddAutoMapperBuilder(this IServiceCollection services, Action<AutoMapperBuilderConfiguration> builder)
         {
             //Configure IOptions<AutoMapperBuilderConfiguration>
-            services.Configure(option);
+            services.Configure(builder);
+            
+            //Register IAutoMapperBuilder in the service container
+            services.AddSingleton<IAutoMapperBuilder, AutoMapperBuilder>();
 
-            //Registering IAutoMapperBuilder in the DI container
-            services.AddTransient<IAutoMapperBuilder, AutoMapperBuilder>();
+            //Build IMapper and add to the service container
+            services.AddSingleton(services.BuildServiceProvider().GetRequiredService<IAutoMapperBuilder>().Build());
 
             return services;
         }

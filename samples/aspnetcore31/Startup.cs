@@ -21,11 +21,9 @@ namespace AutoMapperProfileWithDI
             //Registering MyService in the DI container
             services.AddTransient<IMyService, MyService>();
 
-            var provider = services.BuildServiceProvider();
-
             services.AddAutoMapperBuilder(builder =>
             {
-                builder.Profiles.Add(new MyClass(provider.GetRequiredService<IMyService>()));
+                builder.Profiles.Add(new MyClass(services));
             });
 
             services.AddControllers();
